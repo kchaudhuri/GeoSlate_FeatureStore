@@ -29,22 +29,32 @@ class FeatureStore():
     
     '''
 
-    def __init__(self):
-
+    def __init__(self, n_features):
         self.data = {}
+        self.n_features = n_features
 
 
     def add(self, user_id, feat_name, feat_value):
+        '''
+        Add one feature at a time
+        '''
        
        # Logic for 1 feature addition
         if feat_name not in self.data:
-            self.data[feat_name] = [(user_id, feat_value)]
+
+            if len(self.data) < self.n_features:
+                self.data[feat_name] = [(user_id, feat_value)]
+            else:
+                print('Add unsuccesful. Maximum number of features reached.')
 
         else:
             self.data[feat_name].append((user_id, feat_value))
         
     
     def fetch(self, feat_name):
+        '''
+        Fetch one feature (latest value) at a time
+        '''
 
         # Checks if the feature exists in the data store, if yes then returns latest value
         # Else returns -1
