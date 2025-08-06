@@ -30,6 +30,17 @@ class FeatureStore():
         self.data = {}
         self.n_features = n_features
 
+    def add_feature(self, feature):
+
+        if len(self.data) < self.n_features:
+            if feature not in self.data:
+                self.data[feature] = []
+            else:
+                print('Feature already exists in the feature store.')
+        else:
+            print(f'Cannot add {feature} to the store as # of features = feature limit.')
+
+
     def add(self, user_id, feat_name, feat_value):
         '''
         Add one feature at a time
@@ -40,7 +51,7 @@ class FeatureStore():
             feat_value: Feature value to be added
         '''
        
-       # Logic for 1 feature addition
+        # Logic for 1 feature addition
         if feat_name not in self.data:
 
             if len(self.data) < self.n_features:
