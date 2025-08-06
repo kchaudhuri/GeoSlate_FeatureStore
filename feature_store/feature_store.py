@@ -38,7 +38,7 @@ class FeatureStore():
             else:
                 print('Feature already exists in the feature store.')
         else:
-            print(f'Cannot add {feature} to the store as # of features = feature limit.')
+            print(f'Cannot add {feature}. Maximum number of features reached.')
 
 
     def add(self, user_id, feat_name, feat_value):
