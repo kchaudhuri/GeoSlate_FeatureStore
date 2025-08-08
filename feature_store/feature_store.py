@@ -40,6 +40,22 @@ class FeatureStore():
         else:
             print(f'Cannot add {feature}. Maximum number of features reached.')
 
+    def add_features(self, user_id, feat_sets):
+
+        # Iterate through all samples
+        for feat_set in feat_sets:
+
+            # Validate if all keys are already present in the feature store
+            # if yes then proceed or else quit
+
+            # Iterate through each feature key:value pairs
+            for feat_key in feat_set.keys():
+
+                value = feat_set[feat_key]
+
+                # Add the feature value to the feature store
+                self.data[feat_key].append(value)
+
 
     def add(self, user_id, feat_name, feat_value):
         '''
