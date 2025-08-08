@@ -39,9 +39,9 @@ class FeatureStore():
             if feature not in self.data:
                 self.data[feature] = []
             else:
-                print('Feature already exists in the feature store.')
+                print(f"Feature '{feature}' already exists in the feature store.")
         else:
-            print(f'Cannot add {feature}. Maximum number of features reached.')
+            print(f"Cannot add '{feature}'. Maximum number of features reached.")
 
     def add_data(self, user_id, feat_sets):
 
@@ -62,6 +62,8 @@ class FeatureStore():
 
     def add(self, user_id, feat_name, feat_value):
         '''
+        Redundant..
+        
         Add one feature at a time
 
         Args:
@@ -101,3 +103,7 @@ class FeatureStore():
         else:
             return -1
 
+    def snapshot(self):
+        # Returns the entire feature store data
+
+        return self.data
