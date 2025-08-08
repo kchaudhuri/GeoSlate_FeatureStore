@@ -27,12 +27,15 @@ class FeatureStore():
     '''
 
     def __init__(self, n_features):
-        self.data = {}
-        self.n_features = n_features
+        self.data = {} # Datastore
+        self.n_features = n_features # Number of features to be stored
 
     def add_feature(self, feature):
 
+        # If the total number features greater than number of features limit then add feature
         if len(self.data) < self.n_features:
+
+            # Check for duplicate feature
             if feature not in self.data:
                 self.data[feature] = []
             else:
@@ -40,7 +43,7 @@ class FeatureStore():
         else:
             print(f'Cannot add {feature}. Maximum number of features reached.')
 
-    def add_features(self, user_id, feat_sets):
+    def add_data(self, user_id, feat_sets):
 
         # Iterate through all samples
         for feat_set in feat_sets:
