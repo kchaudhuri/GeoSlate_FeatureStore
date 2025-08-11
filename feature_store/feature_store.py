@@ -27,6 +27,9 @@ class FeatureStore():
     '''
 
     def __init__(self, n_features):
+
+        self.registered_users = {}
+        self.user_log = []
         self.data = {} # Datastore
         self.n_features = n_features # Number of features to be stored
 
@@ -45,43 +48,29 @@ class FeatureStore():
 
     def add_data(self, user_id, feat_sets):
 
-        # Iterate through all samples
-        for feat_set in feat_sets:
+        # Check for valid user
+        if user_id in self.registered_users:
 
-            # Validate if all keys are already present in the feature store
-            # if yes then proceed or else quit
+            # Track userid interaction
+            self.user_log.append((user_id, 'add_data'))
 
-            # Iterate through each feature key:value pairs
-            for feat_key in feat_set.keys():
+            # Iterate through all samples
+            for feat_set in feat_sets:
 
-                value = feat_set[feat_key]
+                # Validate if all keys are already present in the feature store
+                # if yes then proceed or else quit
 
-                # Add the feature value to the feature store
-                self.data[feat_key].append(value)
+                # Iterate through each feature key:value pairs
+                for feat_key in feat_set.keys():
 
+                    value = feat_set[feat_key]
 
-    def add(self, user_id, feat_name, feat_value):
-        '''
-        Redundant..
+                    # Add the feature value to the feature store
+                    self.data[feat_key].append(value)
         
-        Add one feature at a time
-
-        Args:
-            user_id: Unique user ID
-            feat_name: Feature name to be added
-            feat_value: Feature value to be added
-        '''
-       
-        # Logic for 1 feature addition
-        if feat_name not in self.data:
-
-            if len(self.data) < self.n_features:
-                self.data[feat_name] = [(user_id, feat_value)]
-            else:
-                print('Add unsuccesful. Maximum number of features reached.')
-
         else:
-            self.data[feat_name].append((user_id, feat_value))
+            print('Please register before working with the Feature store.')
+
         
     def fetch(self, feat_name):
         '''
