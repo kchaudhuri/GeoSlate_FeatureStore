@@ -34,11 +34,24 @@ class FeatureStore():
         self.n_features = n_features # Number of features to be stored
 
     def register_user(self, user_id, user_name):
+        '''
+        Register user for interaction with the feature store.
+
+        Args:
+            user_id: Unique user identifier
+            user_name: User name
+        '''
 
         self.registered_users[user_id] = user_name
         print('User registered successfully')
 
     def add_feature(self, feature):
+        '''
+        Function to add a new feature to the feature store.
+
+        Args:
+            feature: Feature name to be added
+        '''
 
         # If the total number features greater than number of features limit then add feature
         if len(self.data) < self.n_features:
@@ -52,6 +65,14 @@ class FeatureStore():
             print(f"Cannot add '{feature}'. Maximum number of features reached.")
 
     def add_data(self, user_id, feat_sets):
+        '''
+        Function to add feature data (row-wise) by the user.
+
+        Args:
+            user_id: User Id of the user interacting with the feature store
+            feat_sets: Data to be added (List of dictionaries), each element in the list represents
+                    a data sample.
+        '''
 
         # Check for valid user
         if user_id in self.registered_users:
