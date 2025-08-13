@@ -33,6 +33,11 @@ class FeatureStore():
         self.data = {} # Datastore
         self.n_features = n_features # Number of features to be stored
 
+    def register_user(self, user_id, user_name):
+
+        self.registered_users[user_id] = user_name
+        print('User registered successfully')
+
     def add_feature(self, feature):
 
         # If the total number features greater than number of features limit then add feature
