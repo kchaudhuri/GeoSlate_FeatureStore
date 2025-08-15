@@ -44,25 +44,34 @@ class FeatureStore():
 
         self.registered_users[user_id] = user_name
         print('User registered successfully')
+        print(f'{user_id} : {user_name}')
 
-    def add_feature(self, feature):
+    def add_feature(self, user_id, feature):
         '''
         Function to add a new feature to the feature store.
 
         Args:
             feature: Feature name to be added
         '''
+        # Check for valid user
+        if user_id in self.registered_users:
 
-        # If the total number features greater than number of features limit then add feature
-        if len(self.data) < self.n_features:
+            # Track userid interaction
+            self.user_log.append((user_id, 'add_feature'))
 
-            # Check for duplicate feature
-            if feature not in self.data:
-                self.data[feature] = []
+            # If the total number features greater than number of features limit then add feature
+            if len(self.data) < self.n_features:
+
+                # Check for duplicate feature
+                if feature not in self.data:
+                    self.data[feature] = []
+                else:
+                    print(f"Feature '{feature}' already exists in the feature store.")
             else:
-                print(f"Feature '{feature}' already exists in the feature store.")
+                print(f"Cannot add '{feature}'. Maximum number of features reached.")
+
         else:
-            print(f"Cannot add '{feature}'. Maximum number of features reached.")
+            print('Please register before working with the Feature store.')
 
     def add_data(self, user_id, feat_sets):
         '''
