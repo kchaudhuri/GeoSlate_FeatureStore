@@ -1,4 +1,4 @@
-
+import pandas as pd
 
 # Sample Data
 '''
@@ -64,7 +64,7 @@ class FeatureStore():
                     self.data[feature] = []
 
                     # Track userid interaction
-                    self.user_log.append((user_id, f'add_feature_{feature}'))
+                    self.user_log.append((user_id, f'add_feature:{feature}'))
                     print(f"Feature '{feature}' added successfully!")
 
                 else:
@@ -89,7 +89,7 @@ class FeatureStore():
         if user_id in self.registered_users:
 
             # Track userid interaction
-            self.user_log.append((user_id, f'add_data_{len(feat_sets)}'))
+            self.user_log.append((user_id, f'add_data:{len(feat_sets)}'))
 
             # Iterate through all samples
             for feat_set in feat_sets:
@@ -135,7 +135,7 @@ class FeatureStore():
         if user_id in self.registered_users:
 
             # Track userid interaction
-            self.user_log.append((user_id, 'user_log'))
+            self.user_log.append((user_id, 'view_user_log'))
 
             return self.user_log[:-1]
 
@@ -147,3 +147,9 @@ class FeatureStore():
         # Returns the entire feature store data
 
         return self.data
+    
+    def get_data_table(self):
+        # Returns the entire feature store data in table format
+
+        return pd.DataFrame(self.data)
+
