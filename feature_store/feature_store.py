@@ -56,22 +56,24 @@ class FeatureStore():
         # Check for valid user
         if user_id in self.registered_users:
 
-            # Track userid interaction
-            self.user_log.append((user_id, 'add_feature'))
-
             # If the total number features greater than number of features limit then add feature
             if len(self.data) < self.n_features:
 
                 # Check for duplicate feature
                 if feature not in self.data:
                     self.data[feature] = []
+
+                    # Track userid interaction
+                    self.user_log.append((user_id, f'add_feature_{feature}'))
+                    print(f"Feature '{feature}' added successfully!")
+
                 else:
-                    print(f"Feature '{feature}' already exists in the feature store.")
+                    print(f"ERROR: Feature '{feature}' already exists in the feature store.")
             else:
-                print(f"Cannot add '{feature}'. Maximum number of features reached.")
+                print(f"ERROR: Cannot add '{feature}'. Maximum number of features reached.")
 
         else:
-            print('Please register before working with the Feature store.')
+            print('ERROR: Please register before working with the Feature store.')
 
     def add_data(self, user_id, feat_sets):
         '''
@@ -87,7 +89,7 @@ class FeatureStore():
         if user_id in self.registered_users:
 
             # Track userid interaction
-            self.user_log.append((user_id, 'add_data'))
+            self.user_log.append((user_id, f'add_data_{len(feat_sets)}'))
 
             # Iterate through all samples
             for feat_set in feat_sets:
@@ -104,7 +106,7 @@ class FeatureStore():
                     self.data[feat_key].append(value)
         
         else:
-            print('Please register before working with the Feature store.')
+            print('ERROR: Please register before working with the Feature store.')
 
         
     def fetch(self, feat_name):
@@ -126,6 +128,20 @@ class FeatureStore():
             return self.data[feat_name][-1](-1)
         else:
             return -1
+        
+    def view_user_log(self, user_id):
+
+        # Check for valid user
+        if user_id in self.registered_users:
+
+            # Track userid interaction
+            self.user_log.append((user_id, 'user_log'))
+
+            return self.user_log[:-1]
+
+        else:
+            print('ERROR: Please register before working with the Feature store.')
+
 
     def snapshot(self):
         # Returns the entire feature store data
