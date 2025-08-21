@@ -1,4 +1,4 @@
-# 🌍 FeatureStore
+# 🌍 GeoSlate FeatureStore
 
 A modular and extensible **Feature Store for Geospatial Data** built with Python. It helps data scientists and ML engineers ingest, transform, and serve spatial features for machine learning models.
 
