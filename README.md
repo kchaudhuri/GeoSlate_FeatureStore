@@ -9,6 +9,7 @@ A modular and extensible **Feature Store for Geospatial Data** built with Python
 - 📥 **Ingestion** from shapefiles, GeoJSON, CSV, and OpenStreetMap
 - 💾 **Save**: Save features as Parquet or Feather using a class-based interface
 - 🔍 **Duplicate Detection**: Prevents saving previously stored geometries
+- 📌 **Open data integration**: Added functionality to fetch Open Street Map data (as base maps)
 
 ---
 
@@ -46,6 +47,7 @@ python examples/simple_demo.py
 
 - [x] Ingest and store vector and raster data
 - [x] Class-based feature store with duplicate detection
+- [x] Open Data base map integration
 - [ ] Feature engineering utilities
 - [ ] Feature serving via FastAPI
 - [ ] DVC integration for versioning
