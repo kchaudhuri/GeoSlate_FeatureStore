@@ -6,11 +6,11 @@ from shapely.geometry import Point, LineString, Polygon, MultiLineString
 from shapely.geometry.base import BaseGeometry
 
 class GeoFeatureStore:
-    '''
+    """
     GeoFeatureStore handles validating, saving and loading of processed geospatial features in efficient formats
     such as Parquet or Feather, with optional metadata logging.
 
-    '''
+    """
     def __init__(self, base_dir="features", registry_file="feature_registry.csv"):
         self.base_dir = base_dir
         os.makedirs(self.base_dir, exist_ok=True)
