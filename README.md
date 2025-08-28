@@ -31,7 +31,7 @@ pip install -r requirements.txt
 ### 3. Run test
 
 ```bash
-python examples/simple_demo.py
+python -m examples.simple_demo
 ```
 
 
