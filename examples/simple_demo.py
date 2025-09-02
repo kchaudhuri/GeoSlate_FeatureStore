@@ -1,5 +1,6 @@
 from feature_store import opendata
 from feature_store import store
+from feature_store import visualize
 
 # import sys
 # import os
@@ -12,9 +13,12 @@ print(sample_area.shape)
 datastore = store.GeoFeatureStore()
 
 # Save the new locations
-datastore.save(sample_area, "Thane_India")
+# datastore.save(sample_area, "Thane_India")
 
 # Load location dataxx
 gdf = datastore.load("Thane_India")
 print(gdf.head())
+
+map = visualize.mapify(gdf)
+map.save("data/Sample.html")
 
