@@ -19,8 +19,8 @@ A modular and extensible **Feature Store for Geospatial Data** built with Python
 ### 1. Clone the Repo
 
 ```bash
-git clone https://github.com/yourusername/FeatureStore.git
-cd FeatureStore
+git clone https://github.com/yourusername/GeoSlate_FeatureStore.git
+cd GeoSlate_FeatureStore
 ```
 
 ### 2. Install Dependencies
