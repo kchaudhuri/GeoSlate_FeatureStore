@@ -6,6 +6,7 @@ import geopandas as gpd
 import logging
 from shapely.geometry import Point
 from shapely.ops import nearest_points
+from geopy.distance import geodesic
 
 
 def create_buffer(gdf: gpd.GeoDataFrame, distance: float) -> gpd.GeoDataFrame:
@@ -51,3 +52,30 @@ def calculate_distance_to_nearest(from_gdf: gpd.GeoDataFrame, to_gdf: gpd.GeoDat
 
     print(f"Calculated distances to nearest features for {len(from_gdf)} geometries.")
     return from_gdf
+
+def measure_distance(point1: tuple, point2: tuple, unit: str = "km") -> float:
+    """
+    Measure the geodesic distance between two geographic coordinates.
+
+
+    Parameters:
+        point1 (tuple): (latitude, longitude) of the first point
+        point2 (tuple): (latitude, longitude) of the second point
+        unit (str): Unit of distance ("km", "m", "mi")
+
+
+    Returns:
+        float: Distance between the two points in specified units
+    """
+    distance_km = geodesic(point1, point2).kilometers
+    if unit == "m":
+        return distance_km * 1000
+    elif unit == "mi":
+        return distance_km * 0.621371
+    return distance_km
+
+# def spatial_join()
+
+# def add_area_and_perimeter()
+
+# def extract_zonal_stats()
