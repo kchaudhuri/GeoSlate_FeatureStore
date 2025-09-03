@@ -53,6 +53,7 @@ def calculate_distance_to_nearest(from_gdf: gpd.GeoDataFrame, to_gdf: gpd.GeoDat
     print(f"Calculated distances to nearest features for {len(from_gdf)} geometries.")
     return from_gdf
 
+
 def measure_distance(point1: tuple, point2: tuple, unit: str = "km") -> float:
     """
     Measure the geodesic distance between two geographic coordinates.
@@ -74,8 +75,36 @@ def measure_distance(point1: tuple, point2: tuple, unit: str = "km") -> float:
         return distance_km * 0.621371
     return distance_km
 
-# def spatial_join()
 
-# def add_area_and_perimeter()
+
+def add_area_and_perimeter(gdf: gpd.GeoDataFrame, crs: str = "EPSG:3857") -> gpd.GeoDataFrame:
+    """
+    Adds area (in sq meters) and perimeter (in meters) to polygons.
+
+
+    Parameters:
+        gdf (GeoDataFrame): Input GeoDataFrame (should contain Polygon geometries)
+        crs (str): CRS to use for metric calculations
+
+
+    Returns:
+        GeoDataFrame with new 'area_sqm' and 'perimeter_m' columns
+    """
+    gdf = gdf.copy()
+
+
+    # Project to metric CRS if not already
+    if gdf.crs != crs:
+        gdf = gdf.to_crs(crs)
+
+
+    gdf["area_sqm"] = gdf.geometry.area
+    gdf["perimeter_m"] = gdf.geometry.length
+
+
+    print(f"Computed area and perimeter for {len(gdf)} polygons.")
+    return gdf
+
+# def spatial_join()
 
 # def extract_zonal_stats()
