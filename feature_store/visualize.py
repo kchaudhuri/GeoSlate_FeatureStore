@@ -1,4 +1,5 @@
 """
+Handle visualization
 """
 
 import folium
@@ -7,7 +8,7 @@ import geopandas as gpd
 from folium.plugins import MarkerCluster
 
 
-def mapify(gdf: gpd.GeoDataFrame, map_tile: str = "CartoDB positron", zoom: int = 12) -> folium.Map:
+def mapify(gdf, map_tile="CartoDB positron", zoom=12):
     """
     Visualize a GeoDataFrame with points, lines, or polygons on an interactive map using folium.
 
