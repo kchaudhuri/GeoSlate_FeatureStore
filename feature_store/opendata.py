@@ -1,4 +1,5 @@
 """
+Handle Open Data
 """
 
 import osmnx as ox
@@ -6,7 +7,7 @@ import geopandas as gpd
 
 import osmnx as ox
 
-def fetch_osm_features(place: str, tags: dict, buffer: int = 0, to_crs: str = "EPSG:4326"):
+def fetch_osm_features(place, tags, buffer=0, to_crs="EPSG:4326"):
     """
     Fetch features from OpenStreetMap using a place name and tag filters.
 
@@ -47,7 +48,7 @@ def fetch_osm_features(place: str, tags: dict, buffer: int = 0, to_crs: str = "E
         raise
 
 
-def fetch_city_roads(place: str, buffer: int = 0, to_crs: str = "EPSG:4326"):
+def fetch_city_roads(place, buffer=0, to_crs="EPSG:4326"):
     """
     Fetch all road features (LineStrings) within a city's administrative boundary using OSM.
 
